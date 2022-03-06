@@ -36,9 +36,9 @@ files:
   text: |
     print('Hello, World!')
   learner_created: false
-feedback_link: https://hyperskill.org/projects/99/stages/543/implement#comment
+feedback_link: https://hyperskill.org/learn/step/8970#comment
 status: Solved
 feedback:
   message: Congratulations!
   time: Sun, 23 Jan 2022 20:37:20 UTC
-record: -1
+record: 1

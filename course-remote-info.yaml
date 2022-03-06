@@ -3,14 +3,14 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/311846/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: Thu, 01 Jan 1970 00:00:00 UTC
+update_date: Sat, 12 Feb 2022 20:05:53 UTC
 stages:
 - id: 543
   step: 8970
   is_completed: true
 - id: 544
   step: 8971
-  is_completed: false
+  is_completed: true
 - id: 545
   step: 8972
   is_completed: false
@@ -64,14 +64,16 @@ topics:
     theory_id: 6384
   - title: How to read the documentation
     theory_id: 12125
-  - title: PyCharm basics
-    theory_id: 6193
   - title: Command line overview
     theory_id: 8977
   - title: Parameters and options
     theory_id: 9746
   - title: Pip
     theory_id: 6230
+  - title: Virtual Environment
+    theory_id: 13923
+  - title: PyCharm basics
+    theory_id: 6193
   - title: Basic data types
     theory_id: 5852
   - title: Integer arithmetic
