@@ -34,23 +34,34 @@ class Translator:
         if self.page.status_code == 200:
             print("200 OK")
             self.soup = BeautifulSoup(self.page.content, "html.parser")
-            print("Translations")
             # Word translations
-            word_trans_container = self.soup.find('div', {"id": "translations-content"})
-            word_trans_links = word_trans_container.find_all('a')
-            word_trans = []
-            for link in word_trans_links:
-                word_trans.append(link.text.strip())
-            print(word_trans)
+            print(f'\n{self.languages[self.target_language].capitalize()} Translations:')
+            word_trans = self.get_word_translations()
+            print('\n'.join(word_trans[:5]))  # print only up to first 5 translations
             # Example translations
-            example_trans_container = self.soup.find('section', {"id": "examples-content"})
-            example_trans_spans = example_trans_container.find_all('span', {"class": "text"})
-            example_trans = []
-            for span in example_trans_spans:
-                example_trans.append(span.text.strip())
-            print(example_trans)
+            print(f'\n{self.languages[self.target_language].capitalize()} Examples:')
+            example_trans = self.get_example_translations()
+            for i in range(0, 10, 2):
+                print('\n'.join(example_trans[i:i + 2]))
+                print()
         else:
             print(self.page.status_code, "NOK")
+
+    def get_word_translations(self):
+        word_trans_container = self.soup.find('div', {"id": "translations-content"})
+        word_trans_links = word_trans_container.find_all('a')
+        word_trans = []
+        for link in word_trans_links:
+            word_trans.append(link.text.strip())
+        return word_trans
+
+    def get_example_translations(self):
+        example_trans_container = self.soup.find('section', {"id": "examples-content"})
+        example_trans_spans = example_trans_container.find_all('span', {"class": "text"})
+        example_trans = []
+        for span in example_trans_spans:
+            example_trans.append(span.text.strip())
+        return example_trans
 
 
 translator = Translator()
