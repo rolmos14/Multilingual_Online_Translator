@@ -31,11 +31,21 @@ class Translator:
             print(f'{num}. {language}')
         print("Type the number of your language:")
         self.source_language = self.languages[int(input())]
-        print("Type the number of language you want to translate to:")
-        self.target_language = self.languages[int(input())]
+        print("Type the number of a language you want to translate to or '0' to translate to all languages:")
+        selected_language = input()
+        if selected_language != '0':
+            self.target_language = self.languages[int(selected_language)]
         print("Type the word you want to translate:")
         self.text = input()
-        self.request_translation()
+        # Translate only to one language
+        if self.target_language:
+            self.request_translation()
+        else:
+            # Translate to all languages except to source_language
+            for tar_lang in self.languages.values():
+                self.target_language = tar_lang
+                if self.source_language != self.target_language:
+                    self.request_translation()
 
     def request_translation(self):
         url = f'https://context.reverso.net/translation/' \
@@ -43,17 +53,22 @@ class Translator:
         user_agent = {'User-Agent': 'Chrome/98.0.4758.102'}
         self.page = requests.get(url, headers=user_agent)
         if self.page.status_code == 200:
-            print("200 OK")
+            # print("200 OK")
             self.soup = BeautifulSoup(self.page.content, "html.parser")
-            # Word translations
-            print(f'\n{self.target_language} Translations:')
-            word_trans = self.get_word_translations()
-            print('\n'.join(word_trans[:5]))  # print only up to first 5 translations
-            # Example translations
-            print(f'\n{self.target_language} Examples:')
-            example_trans = self.get_example_translations()
-            for i in range(0, 10, 2):  # print only up to first 5 translations
-                print('\n'.join(example_trans[i:i + 2]), end="\n\n")
+            with open(f'{self.text}.txt', 'a', encoding='UTF-8') as f:
+                # Word translations
+                print(f'\n{self.target_language} Translations:')
+                print(f'\n{self.target_language} Translations:', file=f)
+                word_trans = self.get_word_translations()
+                print('\n'.join(word_trans[:5]))  # print only up to first 5 translations
+                print('\n'.join(word_trans[:5]), file=f)  # print only up to first 5 translations
+                # Example translations
+                print(f'\n{self.target_language} Examples:')
+                print(f'\n{self.target_language} Examples:', file=f)
+                example_trans = self.get_example_translations()
+                for i in range(0, 10, 2):  # print only up to first 5 translations
+                    print('\n'.join(example_trans[i:i + 2]), end="\n\n")
+                    print('\n'.join(example_trans[i:i + 2]), end="\n\n", file=f)
         else:
             print(self.page.status_code, "NOK")
 
