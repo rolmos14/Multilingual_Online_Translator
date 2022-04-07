@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import sys
 
 
 class Translator:
@@ -25,18 +26,26 @@ class Translator:
         self.page = ""
         self.soup = ""
 
-    def run(self):
-        print("Hello, you're welcome to the translator. Translator supports:")
-        for num, language in self.languages.items():
-            print(f'{num}. {language}')
-        print("Type the number of your language:")
-        self.source_language = self.languages[int(input())]
-        print("Type the number of a language you want to translate to or '0' to translate to all languages:")
-        selected_language = input()
-        if selected_language != '0':
-            self.target_language = self.languages[int(selected_language)]
-        print("Type the word you want to translate:")
-        self.text = input()
+    def run(self, args):
+        # Get user inputs if no command-line arguments
+        if len(args) == 1:
+            print("Hello, you're welcome to the translator. Translator supports:")
+            for num, language in self.languages.items():
+                print(f'{num}. {language}')
+            print("Type the number of your language:")
+            self.source_language = self.languages[int(input())]
+            print("Type the number of a language you want to translate to or '0' to translate to all languages:")
+            selected_language = input()
+            if selected_language != '0':
+                self.target_language = self.languages[int(selected_language)]
+            print("Type the word you want to translate:")
+            self.text = input()
+        # Use command-line arguments
+        else:
+            self.source_language = args[1].title()
+            if args[2] != 'all':
+                self.target_language = args[2].title()
+            self.text = args[3]
         # Translate only to one language
         if self.target_language:
             self.request_translation()
@@ -89,5 +98,7 @@ class Translator:
         return example_trans
 
 
-translator = Translator()
-translator.run()
+if __name__ == "__main__":
+    args = sys.argv
+    translator = Translator()
+    translator.run(args)
