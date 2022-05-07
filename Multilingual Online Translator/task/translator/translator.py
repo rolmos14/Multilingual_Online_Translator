@@ -96,8 +96,10 @@ class Translator:
                 for i in range(0, 10, 2):  # print only up to first 5 translations
                     print('\n'.join(example_trans[i:i + 2]), end="\n\n")
                     print('\n'.join(example_trans[i:i + 2]), end="\n\n", file=f)
-        else:
+        elif self.page.status_code == 404:
             raise WordNotFound(self.text)
+        else:
+            print("Something wrong with your internet connection")
 
     def get_word_translations(self):
         word_trans_container = self.soup.find('div', {"id": "translations-content"})
