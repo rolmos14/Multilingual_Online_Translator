@@ -3,6 +3,16 @@ from bs4 import BeautifulSoup
 import sys
 
 
+class LanguageNotSupported(Exception):
+    def __init__(self, language):
+        super().__init__(f"Sorry, the program doesn't support {language}")
+
+
+class WordNotFound(Exception):
+    def __init__(self, word):
+        super().__init__(f"Sorry, unable to find {word}")
+
+
 class Translator:
 
     languages = {1: "Arabic",
@@ -33,19 +43,27 @@ class Translator:
             for num, language in self.languages.items():
                 print(f'{num}. {language}')
             print("Type the number of your language:")
-            self.source_language = self.languages[int(input())]
-            print("Type the number of a language you want to translate to or '0' to translate to all languages:")
-            selected_language = input()
-            if selected_language != '0':
-                self.target_language = self.languages[int(selected_language)]
+            try:
+                self.source_language = self.languages[int(input())]
+                print("Type the number of a language you want to translate to or '0' to translate to all languages:")
+                selected_language = input()
+                if selected_language != '0':
+                    self.target_language = self.languages[int(selected_language)]
+            except KeyError:
+                print("Sorry, select a valid language number")
             print("Type the word you want to translate:")
             self.text = input()
         # Use command-line arguments
         else:
             self.source_language = args[1].title()
+            if self.source_language not in self.languages.values():
+                raise LanguageNotSupported(self.source_language)
             if args[2] != 'all':
                 self.target_language = args[2].title()
+                if self.target_language not in self.languages.values():
+                    raise LanguageNotSupported(self.target_language)
             self.text = args[3]
+
         # Translate only to one language
         if self.target_language:
             self.request_translation()
@@ -79,7 +97,7 @@ class Translator:
                     print('\n'.join(example_trans[i:i + 2]), end="\n\n")
                     print('\n'.join(example_trans[i:i + 2]), end="\n\n", file=f)
         else:
-            print(self.page.status_code, "NOK")
+            raise WordNotFound(self.text)
 
     def get_word_translations(self):
         word_trans_container = self.soup.find('div', {"id": "translations-content"})
@@ -101,4 +119,7 @@ class Translator:
 if __name__ == "__main__":
     args = sys.argv
     translator = Translator()
-    translator.run(args)
+    try:
+        translator.run(args)
+    except (LanguageNotSupported, WordNotFound) as err:
+        print(err)

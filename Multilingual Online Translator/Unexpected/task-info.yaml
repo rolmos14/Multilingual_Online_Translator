@@ -35,9 +35,10 @@ files:
     class TranslatorTest(StageTest):
         def generate(self):
             return [
-                TestCase(args=['english', 'all', 'brrrrrrrrrrrrrrrrk'], check_function=self.check1),
-                TestCase(args=['english', 'korean', 'hello'], check_function=self.check2),
-                TestCase(args=['french', 'all', 'chute'], check_function=self.check3, attach='french\nall\nchute')
+                TestCase(args=['english', 'all', 'brrrrrrrrrrrrrrrrk'], check_function=self.check1, time_limit=30000),
+                TestCase(args=['english', 'korean', 'hello'], check_function=self.check2, time_limit=30000),
+                TestCase(args=['french', 'all', 'chute'], check_function=self.check3, attach='french\nall\nchute',
+                         time_limit=30000)
             ]
 
         def check1(self, reply, attach):
@@ -182,6 +183,13 @@ files:
     if __name__ == '__main__':
         TranslatorTest('translator.translator').run_tests()
   learner_created: false
+- name: translator/hello.txt
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/8976#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Well done! You've finished the project. Select a new project on <a href="https://hyperskill.org/projects">JetBrains
+    Academy</a> to continue learning.
+  time: Sat, 07 May 2022 16:39:14 UTC
 record: -1

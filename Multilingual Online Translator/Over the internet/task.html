@@ -1,4 +1,4 @@
-<h5>Theory</h5>
+<h5 id="theory" id="theory">Theory</h5>
 
 <p><strong>User-Agent field in a request</strong></p>
 
@@ -11,7 +11,7 @@ page = requests.get(url, headers=headers)</code></pre>
 
 <p><strong>Selecting text data</strong></p>
 
-<p>When you access a web page, an important question is how to get the data that you need in a readable form without HTML tags. The answer is CSS. You can access this text via CSS classes and tags. All you need is to go to the <a target="_blank" href="https://context.reverso.net/translation/english-spanish/hello" rel="noreferrer nofollow noopener" target="_blank">web page</a>,  open your browser’s Dev Tools, and find these elements in CSS code. You can get access to your browser’s DevTools in three different ways:</p>
+<p>When you access a web page, an important question is how to get the data that you need in a readable form without HTML tags. The answer is CSS. You can access this text via CSS classes and tags. All you need is to go to the <a target="_blank" target="_blank" href="https://context.reverso.net/translation/english-spanish/hello" rel="noreferrer nofollow noopener" target="_blank">web page</a>,  open your browser’s Dev Tools, and find these elements in CSS code. You can get access to your browser’s DevTools in three different ways:</p>
 
 <p><strong><em>Keyboard</em></strong>: Ctrl + Shift + I, except</p>
 
@@ -33,15 +33,15 @@ page = requests.get(url, headers=headers)</code></pre>
 
 <p>After you’re done with CSS, check it.</p>
 
-<h5>Description</h5>
+<h5 id="description" id="description">Description</h5>
 
-<p>At this stage, you'll be able to implement a real translator program! A great website called <a target="_blank" href="https://context.reverso.net/translation/" rel="noopener noreferrer nofollow">ReversoContext</a> will help you to do that. ReversoContext is a multilingual translator tool that allows seeing original phrases that should be translated and their equivalents in other languages in contexts (example sentences). That's a very useful feature since the meaning of the word depends greatly on the context. Hence, when you see a context, it's easier for you to choose the right translation.</p>
+<p>At this stage, you'll be able to implement a real translator program! A great website called <a target="_blank" target="_blank" href="https://context.reverso.net/translation/" rel="noopener noreferrer nofollow">ReversoContext</a> will help you to do that. ReversoContext is a multilingual translator tool that allows seeing original phrases that should be translated and their equivalents in other languages in contexts (example sentences). That's a very useful feature since the meaning of the word depends greatly on the context. Hence, when you see a context, it's easier for you to choose the right translation.</p>
 
 <p>The goal of your program at this stage is to find translations and example sentences for a given word. The word can be either in French or in English, and the translation should be in the opposite language (that is, English or French, respectively). </p>
 
-<p>To understand how to do this, go to <a target="_blank" href="https://context.reverso.net/translation/" rel="noreferrer nofollow noopener" target="_blank">ReversoContext</a> and type any word you want to translate. After receiving the result, pay attention to the address bar of your browser. You will see the URL, for example:</p>
+<p>To understand how to do this, go to <a target="_blank" target="_blank" href="https://context.reverso.net/translation/" rel="noreferrer nofollow noopener" target="_blank">ReversoContext</a> and type any word you want to translate. After receiving the result, pay attention to the address bar of your browser. You will see the URL, for example:</p>
 
-<p><a target="_blank" href="https://context.reverso.net/translation/english-french/cheese" rel="noreferrer nofollow noopener" target="_blank">https://context.reverso.net/translation/english-french/cheese</a></p>
+<p><a target="_blank" target="_blank" href="https://context.reverso.net/translation/english-french/cheese" rel="noreferrer nofollow noopener" target="_blank">https://context.reverso.net/translation/english-french/cheese</a></p>
 
 <p>Here you see the language-translation pair «English-French», which represents the direction of translation, meaning that the translation is from English to French and not the other way around. After the last backslash, you can see the word being translated.</p>
 
@@ -51,7 +51,7 @@ page = requests.get(url, headers=headers)</code></pre>
 
 <p style="text-align: center;"><img alt="" height="535" name="s_91860D8CA78B45DEE66EF32279A68E06A5423FF9541F0C8DB4A5138915C378CC_1574232106854_2019-11-20_11-41.png" src="https://ucarecdn.com/a50dfe35-42a9-4a4a-a59d-4fe356d626d1/" width="771"></p>
 
-<h5>Objectives</h5>
+<h5 id="objectives" id="objectives">Objectives</h5>
 
 <p>At this stage, your program should:</p>
 
@@ -71,7 +71,7 @@ page = requests.get(url, headers=headers)</code></pre>
 
 <p>Also, please, make sure your program follows the described format of the output.</p>
 
-<h5>Example</h5>
+<h5 id="example" id="example">Example</h5>
 
 <p>The greater-than symbol followed by a space (<code class="language-python">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
 
